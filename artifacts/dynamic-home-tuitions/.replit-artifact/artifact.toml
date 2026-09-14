@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Dynamic Home Tuitions"
+description = "A premium responsive education and coaching center website for Dynamic Home Tuitions in Kanuru, Vijayawada, with course discovery, learning modes, testimonials, FAQs, and direct contact actions."
+version = "1.0.0"
+id = "artifacts/dynamic-home-tuitions"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23342
+
+[services.development]
+run = "pnpm --filter @workspace/dynamic-home-tuitions run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/dynamic-home-tuitions", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/dynamic-home-tuitions/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23342"
+BASE_PATH = "/"

@@ -32,7 +32,10 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Build website
-       run: PORT=5000 pnpm --filter dynamic-home-tuitions build
+        env:
+          PORT: 5000
+        run: pnpm --filter dynamic-home-tuitions build
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
